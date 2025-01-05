@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>賽馬數據分析</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <h1>賽馬數據分析儀表板</h1>
+    
+    <!-- 騎師表現圖表 -->
+    <div id="jockey-performance"></div>
+    
+    <!-- 賠率分布圖 -->
+    <div id="odds-distribution"></div>
+    
+    <script>
+        var graphs = JSON.parse('{{ performance_chart | tojson | safe }}');
+        Plotly.newPlot('jockey-performance', graphs.data, graphs.layout);
+    </script>
+</body>
+</html> 

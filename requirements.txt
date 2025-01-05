@@ -1,0 +1,7 @@
+playwright
+pandas
+pyyaml
+sqlalchemy
+psycopg2-binary
+flask
+plotly

@@ -1,0 +1,59 @@
+# 爬蟲設定
+SCRAPER:
+  HEADLESS: true
+  MAX_RETRIES: 3
+  TIMEOUT: 30
+  BATCH_SIZE: 7  # 每批處理天數
+  RACECOURSES:   # 支持多個賽馬場
+    - code: "ST"
+      name: "沙田"
+    - code: "HV" 
+      name: "跑馬地"
+
+# 分析設定
+ANALYZER:
+  RANK_THRESHOLD: 3  # 名次閾值
+  MIN_RACES: 3      # 最少出賽次數
+  ODDS_RANGES:      # 賠率分類
+    VERY_HOT: 2.0
+    HOT: 5.0
+    MEDIUM: 10.0
+    HIGH: 20.0
+
+# 日誌設定
+LOGGER:
+  LEVEL: "INFO"
+  FORMAT: "%(asctime)s - %(levelname)s - %(message)s"
+  FILE_PATH: "logs/racing_{date}.log" 
+
+# 資料庫設定
+DATABASE:
+  TYPE: "mysql"
+  HOST: "localhost" 
+  PORT: 3306
+  USER: "root"
+  PASSWORD: "root"
+  DATABASE: "racing_db"  # 移除重複的NAME字段,統一使用DATABASE
+  POOL_SIZE: 5
+  POOL_TIMEOUT: 30
+  ECHO: false
+  MAX_OVERFLOW: 10
+  CHARSET: "utf8mb4"    # 添加字符集支持
+  DRIVER: "pymysql"     # 指定MySQL驅動
+  
+# 批次處理設定
+BATCH:
+  SIZE: 5
+  MAX_CONCURRENT: 3
+  CLEANUP_TIMEOUT: 5  # 清理超时时间（秒） 
+
+# 重试策略配置
+RETRY:
+  MAX_ATTEMPTS: 3
+  DELAY: 1
+  BACKOFF: 2
+
+# 错误处理配置
+ERROR_HANDLING:
+  MAX_FAILURES: 3
+  FAILURE_TIMEOUT: 300  # 5分钟 
